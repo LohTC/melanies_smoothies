@@ -3,7 +3,7 @@
 # - first app: for customers to enter their orders
 # Import python packages
 import streamlit as st
-from snowflake.snowpark.context import get_active_session
+#from snowflake.snowpark.context import get_active_session #del
 from snowflake.snowpark.functions import col
 
 # Write directly to the app
@@ -25,7 +25,9 @@ st.write('The name on your smoothie will be', name_on_order)
 #st.write("You selected:", option)
 
 #print list from db 
-session = get_active_session()
+#session = get_active_session() #del
+cnx = st.connection("snowflake") #add
+session = cnx.session() #add
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 #st.dataframe(data=my_dataframe, use_container_width=True)
 
