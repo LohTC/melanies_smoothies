@@ -6,7 +6,7 @@
 #Checking All Objects for SYSADMIN Ownership
 # Import python packages
 import streamlit as st
-from snowflake.snowpark.context import get_active_session
+#from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import col, when_matched
 
 st.title(":cup_with_straw: Pending Smoothie Orders :cup_with_straw:")
@@ -15,7 +15,9 @@ st.write(
     """
 )
 
-session = get_active_session()
+cnx = st.connection("snowflake")
+#session = get_active_session()
+session = cnx.session()
 #df below not editable
 #my_dataframe = session.table("smoothies.public.orders") \
 #    .select(col('ingredients'),col('name_on_order'),
